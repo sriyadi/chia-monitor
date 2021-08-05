@@ -5,7 +5,7 @@ from apprise import Apprise, AppriseAsset
 from sqlalchemy.exc import OperationalError
 
 from monitor.notifications import (FoundProofNotification, LostPlotsNotification, LostSyncNotification,
-                                   SummaryNotification)
+                                   SummaryNotification, AdditionBalanceNotification)
 
 
 class Notifier:
@@ -21,10 +21,11 @@ class Notifier:
         self.notifications = [
             LostSyncNotification(self.alert_apobj),
             LostPlotsNotification(self.alert_apobj, lost_plots_alert_threshold),
+            AdditionBalanceNotification(self.status_apobj),
             SummaryNotification(self.status_apobj, status_interval_minutes)
         ]
         if not disable_proof_found_alert:
-            self.notifications.append(FoundProofNotification(self.status_apobj))
+            self.notifications.append(FoundProofNotification(self.alert_apobj))
 
     async def task(self) -> None:
         while True:
