@@ -14,21 +14,39 @@ Following notifications are currently sent to the `status_service_url`:
 
 ### Farm summary (configurable interval in `config.json`)
 ```
-** 👨‍🌾 Farm Status 👩‍🌾 **
-🌾 OG Plot Count: 3797
-🌾 Portable Plot Count: 50
-🧺 OG Plot Size: 375.828 TiB
-🧺 Portable Plot Size: 4.948 TiB
-🚜 Plot Change 24h: +86 (+8.511 TiB)
-⌛️ Signage Points Per Minute: 6.30
-🔎 Passed Filters Per Minute: 49.30
-✅ Total Proofs found: 73
-💰 Total Balance: 2.00001 XCH
-🕰️ Time To Win: 2 weeks and 4 days
-💾 Current Netspace: 30.706 EiB
-🏔️ Peak Height: 544594
-📶 Full Node Peer Count: 8
+*🇮🇩 ChiaFarmingGrupID 🇮🇩*
+--------------*Netspace*--------------
+🌏 Netspace: 32.522 EiB
+📈 Netspace Diff: 2688
+🏔️ Peak Height: 672415
+----------------*Server*----------------
 🔄 Synced: True
+📶 Full Node Count: 32
+🖥️ Harvester Count: 2
+📀 NFT Plot Count: 115
+💽 NFT Plot Size: 11.382 TiB
+🆕 Plot Change 24h: +7 (+709.495 GiB)
+----------*FarmingStatus*----------
+⌛️ Signage Per Minute: 6.43
+🔎 Passed Per Minute: 1.50
+✅ Proofs last 1h: 11
+☑️ Proofs last 24h: 315
+🆗 Total Proofs found: 1743
+📈 Pool Difficulty: 5
+🟣 Current Points: 89
+🟡 Point Since Start: 730
+🟢 Point Last 24h: 730
+❌ Point Errors 24h: 5
+-----------------*Wallet*-----------------
+💰 Balance: 0.03028407 XCH
+💸 est. IDR: 97,400
+----------*NilaiTukar-1XCH*----------
+💵 Price in USD: 224.27
+💶 Price in EUR: 189.31
+💷 Price in IDR: 3,216,244
+🪙 Price in BTC: 0.0058613
+🪙 Price in ETH: 0.08501936
+-----------------------------------------------
 ```
 ### Proof found alert
 Triggers when a new partial or full proof is found. To limit the amount of notifications when pooling, this can be disabled in the config using the `disable_proof_found_alert` setting.
