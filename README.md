@@ -14,7 +14,7 @@ Following notifications are currently sent to the `status_service_url`:
 
 ### Farm summary (configurable interval in `config.json`)
 ```
-*🇮🇩 ChiaFarmingGrupID 🇮🇩*
+*🇮🇩 ChiaFarming 🇮🇩*
 --------------*Netspace*--------------
 🌏 Netspace: 32.522 EiB
 📈 Netspace Diff: 2688
