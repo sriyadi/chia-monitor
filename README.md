@@ -55,6 +55,15 @@ Triggers when a new partial or full proof is found. To limit the amount of notif
 ** 🤑 Proof found! 🤑 **
 Your farm found a new partial or full proof
 ```
+### Addition Balance alert
+```
+** 💰 Balance Bertambah 💰 **
+Wallet Balance Bertambah
+New: 0.030283970598 XCH
+Prev: 0.030283968598 XCH
+Addition: 2000 mojo
+```
+
 ---
 Following notifications are currently sent to the `alert_service_url`:
 
@@ -82,15 +91,6 @@ Expected: 130, Found: 124
 ** ✅ Farmer Plots recoverd! ✅ **
 Your farmer's plot count has recovered to its previous value
 ```
-
-### Addition Balance alert
-```
-** 💰 Balance Bertambah 💰 **
-Wallet Balance Bertambah
-New: 0.030283970598 XCH
-Prev: 0.030283968598 XCH
-Addition: 2000 mojo
-...
 
 ---
 
