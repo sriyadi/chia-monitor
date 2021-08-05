@@ -12,7 +12,8 @@ class ChiaExporter:
     # Wallet metrics
     total_balance_gauge = Gauge('chia_confirmed_total_mojos', 'Sum of confirmed wallet balances')
     total_farmed_gauge = Gauge('chia_farmed_total_mojos', 'Total chia farmed')
-
+    
+    
     # Full node metrics
     network_space_gauge = Gauge('chia_network_space', 'Approximation of current netspace')
     diffculty_gauge = Gauge('chia_diffculty', 'Current networks farming difficulty')
@@ -57,6 +58,7 @@ class ChiaExporter:
 
     # Price metrics
     price_usd_cents_gauge = Gauge('chia_price_usd_cent', 'Current Chia price in USD cent')
+    price_idr_gauge = Gauge('chia_price_idr', 'Current Chia price in IDR')
     price_eur_cents_gauge = Gauge('chia_price_eur_cent', 'Current Chia price in EUR cent')
     price_btc_satoshi_gauge = Gauge('chia_price_btc_satoshi', 'Current Chia price in BTC satoshi')
     price_eth_gwei_gauge = Gauge('chia_price_eth_gwei', 'Current Chia price in ETH gwei')
@@ -132,7 +134,7 @@ class ChiaExporter:
         self.log.info(format_balance(int(event.confirmed)))
         self.total_farmed_gauge.set(int(event.farmed))
         self.log.info(format_farmed(int(event.farmed)))
-
+        
     def update_signage_point_metrics(self, event: SignagePointEvent) -> None:
         self.log.info("-" * 64)
         self.signage_point_counter.inc()
@@ -170,7 +172,9 @@ class ChiaExporter:
         self.log.info(format_price(event.usd_cents / 100, "USD", fix_indent=True))
         self.price_usd_cents_gauge.set(event.usd_cents)
         self.log.info(format_price(event.eur_cents / 100, "EUR", fix_indent=True))
-        self.price_eur_cents_gauge.set(event.eur_cents)
+        self.price_eur_cents_gauge.set(event.eur_cents)        
+        self.log.info(format_price(event.idr, "IDR", fix_indent=True))
+        self.price_idr_gauge.set(event.idr)
         self.log.info(format_price(event.btc_satoshi / 10e7, "BTC", fix_indent=True))
         self.price_btc_satoshi_gauge.set(event.btc_satoshi)
         self.log.info(format_price(event.eth_gwei / 10e8, "ETH", fix_indent=True))
