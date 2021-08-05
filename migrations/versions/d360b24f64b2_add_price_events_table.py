@@ -24,6 +24,7 @@ def upgrade():
     sa.Column('eur_cents', sa.Integer(), nullable=True),
     sa.Column('btc_satoshi', sa.Integer(), nullable=True),
     sa.Column('eth_gwei', sa.Integer(), nullable=True),
+    sa.Column('idr', sa.Integer(), nullable=True),
     sa.PrimaryKeyConstraint('ts', name=op.f('pk_price_events'))
     )
     # ### end Alembic commands ###
