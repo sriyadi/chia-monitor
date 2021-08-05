@@ -78,3 +78,4 @@ class PriceEvent(ChiaEvent):
     eur_cents = Column(Integer)
     btc_satoshi = Column(Integer)
     eth_gwei = Column(Integer)
+    idr = Column(Integer)
