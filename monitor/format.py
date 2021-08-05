@@ -143,7 +143,6 @@ def format_idr(amount: int) -> str:
 
 def format_btc(amount: int) -> str:
     return f"🪙 Price in BTC: {amount/10e7}" 
-
     
 def format_eth(amount: int) -> str:
     return f"🪙 Price in ETH: {amount/10e8}"       
