@@ -12,7 +12,7 @@ from monitor.collectors.collector import Collector
 from monitor.database import ChiaEvent
 from monitor.database.events import PriceEvent
 
-VS_CURRENCIES = ["USD", "EUR", "BTC", "ETH"]
+VS_CURRENCIES = ["USD", "EUR", "BTC", "ETH","IDR"]
 PRICE_API = f"https://api.coingecko.com/api/v3/simple/price?ids=chia&vs_currencies={','.join(VS_CURRENCIES)}"
 
 
@@ -36,6 +36,7 @@ class PriceCollector(Collector):
                 eur_cents=int(result["chia"]["eur"] * 100),
                 btc_satoshi=int(result["chia"]["btc"] * 10e7),
                 eth_gwei=int(result["chia"]["eth"] * 10e8),
+                idr=int(result["chia"]["idr"]),
             )
             await self.publish_event(event)
 
