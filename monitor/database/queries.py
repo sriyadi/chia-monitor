@@ -1,8 +1,9 @@
 from datetime import datetime, timedelta
 from typing import Optional, Tuple
 
-from monitor.database.events import (BlockchainStateEvent, ConnectionsEvent, FarmingInfoEvent,
-                                     HarvesterPlotsEvent, SignagePointEvent, WalletBalanceEvent)
+from monitor.database.events import (BlockchainStateEvent, ConnectionsEvent, FarmingInfoEvent, PoolStateEvent,
+                                     HarvesterPlotsEvent, SignagePointEvent, WalletBalanceEvent,
+                                     PriceEvent)
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.sql.expression import select
 from sqlalchemy.sql.functions import func
@@ -10,9 +11,29 @@ from sqlalchemy.sql.functions import func
 
 async def get_proofs_found(session: AsyncSession) -> Optional[int]:
     result = await session.execute(select(func.sum(FarmingInfoEvent.proofs)))
-    return result.scalars().first()
+    return result.scalars().first() 
+    
 
+async def get_proofs_per_hour(session: AsyncSession, interval=timedelta(hours=1)) -> Optional[float]:
+    result = await session.execute(
+        select(func.sum(
+            FarmingInfoEvent.proofs)).where(FarmingInfoEvent.ts >= datetime.now() - interval))
+    proofs_hour = result.scalars().first()
+    if proofs_hour is None:
+        return None
+    return proofs_hour
+       
 
+async def get_proofs_24h(session: AsyncSession, interval=timedelta(hours=24)) -> Optional[float]:
+    result = await session.execute(
+        select(func.sum(
+            FarmingInfoEvent.proofs)).where(FarmingInfoEvent.ts >= datetime.now() - interval))
+    proofs_24h = result.scalars().first()
+    if proofs_24h is None:
+        return None
+    return proofs_24h
+
+       
 async def get_harvester_count(session: AsyncSession) -> Optional[int]:
     result = await session.execute(
         select(ConnectionsEvent.harvester_count).order_by(ConnectionsEvent.ts.desc()))
@@ -33,6 +54,16 @@ async def get_blockchain_state(session: AsyncSession) -> Optional[BlockchainStat
 async def get_wallet_balance(session: AsyncSession) -> Optional[WalletBalanceEvent]:
     result = await session.execute(select(WalletBalanceEvent).order_by(WalletBalanceEvent.ts.desc()))
     return result.scalars().first()
+    
+
+async def get_addition_balance(session: AsyncSession) -> Optional[int]:
+    result = await session.execute(select(WalletBalanceEvent.confirmed).order_by(WalletBalanceEvent.ts.desc()))
+    return result.scalars().first()
+    
+    
+async def get_price(session: AsyncSession) -> Optional[PriceEvent]:
+    result = await session.execute(select(PriceEvent).order_by(PriceEvent.ts.desc()))
+    return result.scalars().first()
 
 
 async def get_connections(session: AsyncSession) -> Optional[ConnectionsEvent]:
@@ -50,6 +81,11 @@ async def get_previous_signage_point(session: AsyncSession) -> Optional[str]:
         select(FarmingInfoEvent.signage_point).order_by(FarmingInfoEvent.ts.desc()).distinct(
             FarmingInfoEvent.signage_point).limit(2))
     return result.all()[-1][0]
+    
+
+async def get_poolstate(session: AsyncSession) -> Optional[PoolStateEvent]:
+    result = await session.execute(select(PoolStateEvent).order_by(PoolStateEvent.ts.desc()))
+    return result.scalars().first()
 
 
 async def get_plot_delta(session: AsyncSession, period=timedelta(hours=24)) -> Tuple[int, int]:
