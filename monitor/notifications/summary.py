@@ -102,7 +102,7 @@ class SummaryNotification(Notification):
                 format_eth(int(last_price.eth_gwei)),
                 format_garis(),
             ])
-            sent = self.apobj.notify(title='*🇮🇩 ChiaFarming 🇮🇩*', body=summary)
+            sent = self.apobj.notify(title='*🇮🇩 ChiaFarmingGrup-ID 🇮🇩*', body=summary)
             if sent:
                 self.last_summary_ts = datetime.now()
                 return True
