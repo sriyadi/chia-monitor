@@ -54,7 +54,7 @@ def format_space(space: int) -> str:
     return f"🌏 Net Size: {format_bytes(space)}"
 
 def format_diffculty(difficulty: int) -> str:
-    return f"📈 Netspace Diff: {difficulty}"
+    return f"📈 Net Diff: {difficulty}"
 
 def format_peak_height(peak_height: int, fix_indent=False) -> str:
     indent = " " * (1 if fix_indent else 0)
