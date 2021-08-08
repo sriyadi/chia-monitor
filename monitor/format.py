@@ -19,10 +19,10 @@ def format_garis_exchange () -> str:
     return f"----------*NilaiTukar-1XCH*----------"              
     
 def format_og_plot_count(plot_count: int) -> str:
-    return f"🌾 OG Plot Count: {plot_count}"
+    return f"💿 OG Plot Count: {plot_count}"
     
 def format_og_plot_size(plot_size: int) -> str:
-    return f"🧺 OG Plot Size: {format_bytes(plot_size)}"
+    return f"💾 OG Plot Size: {format_bytes(plot_size)}"
 
 def format_portable_plot_count(plot_count: int) -> str:
     return f"📀 NFT Plot Count: {plot_count}"
@@ -51,7 +51,7 @@ def format_balance_idr(balance_idr: int) -> str:
     return f"💸 est. IDR: {balance_idr_ribuan}"    
 
 def format_space(space: int) -> str:
-    return f"🌏 Netspace: {format_bytes(space)}"
+    return f"🌏 Net Size: {format_bytes(space)}"
 
 def format_diffculty(difficulty: int) -> str:
     return f"📈 Netspace Diff: {difficulty}"
