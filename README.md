@@ -152,7 +152,7 @@ sudo apt install python3 pipenv
 ## Installation
 1. Clone the repository
 ```bash
-https://github.com/sriyadi/chia-monitor.git
+git clone https://github.com/sriyadi/chia-monitor.git
 cd chia-monitor
 ```
 2. Install the required dependecies
