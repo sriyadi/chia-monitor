@@ -18,5 +18,5 @@ class FoundProofNotification(Notification):
             return False
 
     async def trigger(self) -> None:
-        return self.apobj.notify(title='** 🤑 Proof found! 🤑 **',
+        return self.apobj.notify(title='** 💎 Proof found! 💎 **',
                                  body="Your farm found a new partial or full proof")
